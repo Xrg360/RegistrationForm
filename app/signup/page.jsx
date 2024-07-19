@@ -89,8 +89,9 @@ const Signup = () => {
   };
 
   return (
+    <div className='h-screen w-screen flex justify-center items-center'>
     <div className="max-w-md mx-auto p-8 bg-white shadow-md rounded-lg mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-center">Signup for Techfest</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Signup for Summit</h2>
       {step === 'initial' ? (
         <>
           <button
@@ -219,6 +220,7 @@ const Signup = () => {
           </button>
         </form>
       )}
+    </div>
     </div>
   );
 };

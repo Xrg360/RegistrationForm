@@ -3,13 +3,6 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'grifter';
-  src: url('/fonts/grifterbold.otf') format('otf');
-      
-  font-weight: normal;
-  font-style: normal;
-}
-
-body{
-  /* background: linear-gradient(90deg, #ffffff 10%, #fff5de 90%); */
+  font-family: 'Grifter';
+  src: url('/assets/fonts/grifterbold.otf') format('opentype');
 }

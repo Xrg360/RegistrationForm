@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     if (typeof window !== "undefined") {
       setIsAuthenticated(false);
+      localStorage.clear();
       localStorage.setItem('isAuthenticated', 'false');
     }
   };

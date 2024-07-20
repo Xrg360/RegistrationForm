@@ -13,7 +13,7 @@ const Landing = () => {
 
   return (
     <div className='h-screen w-full flex justify-center items-center'>
-      <h1>Welcome to the Landing Page {localStorage.getItem("userName")}</h1>
+      <h1>Welcome to the Landing Page {localStorage.getItem("userfName")}</h1>
       {isAuthenticated?<button onClick={handleLogout} className="bg-red-500 text-white py-2 px-4 rounded">
         Logout
       </button>:<button onClick={()=>router.push('/login')} className="bg-red-500 text-white py-2 px-4 rounded">

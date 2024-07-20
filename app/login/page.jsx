@@ -1,16 +1,23 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "./components/LoginForm";
+import { useAuth } from "@/app/providers/context";
+import { useRouter } from "next/navigation"; 
+
 
 const Page = () => {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter(); 
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/tickets"); 
+    }
+  }, [isAuthenticated, router]);
 
   return (
     <div className="relative">
-
-      <div className=" bg-greenbg h-full px-[100px] pt-40">
       <LoginForm/>
-      </div>
     </div>
   );
 };

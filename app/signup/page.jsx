@@ -9,10 +9,12 @@ import { useAuth } from '../providers/context';
 import { useRouter } from 'next/navigation'; // Adjust the import based on your router location
 import InitialSignup from './components/initialComp';
 import AdditionalInfoForm from './components/additionalInfo';
+import Image from 'next/image';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    fname: '',
+    lname: '',
     branch: '',
     sem: '',
     clg: '',
@@ -20,8 +22,18 @@ const Signup = () => {
     phone: '',
     email: '',
     password: '',
+    ieeeMember: '',
+    ieeeID: '',
     paymentScreenshot: null,
   });
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === 'paymentScreenshot') {
+      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
+  };
 
   const [user, setUser] = useState(null);
   const [step, setStep] = useState('initial');
@@ -30,7 +42,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/'); // Redirect to landing page if already logged in
+      router.push('/tickets'); // Redirect to landing page if already logged in
     }
   }, [isAuthenticated, router]);
 
@@ -41,18 +53,27 @@ const Signup = () => {
       const result = await signInWithPopup(auth, provider);
       setUser(result.user);
       const userDocRef = doc(db, 'users', result.user.uid);
+      localStorage.setItem('userId', result.user.uid);
       const userDoc = await getDoc(userDocRef);
+      
+      const fullName = result.user.displayName;
+      const nameParts = fullName.split(' ');
+      localStorage.setItem('userfName',nameParts[0]);
+      localStorage.setItem('userlName',nameParts[nameParts.length - 1]);
 
       if (userDoc.exists()) {
         // User is already registered, consider it a login
         login();
-        localStorage.setItem('userName', result.user.displayName);
-        router.push('/');
+        router.push('/tickets');
       } else {
-        // User is not registered, proceed with additional info
+        
+        const fname = nameParts[0];
+        const lname = nameParts[nameParts.length - 1];
+        
         setFormData((prevData) => ({
           ...prevData,
-          name: result.user.displayName,
+          fname: fname,
+          lname: lname,
           email: result.user.email,
         }));
         setStep('info');
@@ -62,14 +83,6 @@ const Signup = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === 'paymentScreenshot') {
-      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
-    } else {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    }
-  };
 
   const handleEmailPasswordSignup = async (e) => {
     e.preventDefault();
@@ -106,19 +119,18 @@ const Signup = () => {
       console.log('User document written with ID: ', user.uid);
       login();
       localStorage.setItem('userName', formData.name);
-      router.push('/');
+      router.push('/tickets');
     } catch (e) {
       console.error('Error during signup: ', e);
       alert('Error during signup. Please try again.');
     }
   };
 
-  if (isAuthenticated) return null; // Prevents rendering the signup form if authenticated
+  if (isAuthenticated) return null; 
 
   return (
-    <div className='h-screen w-screen flex justify-center items-center'>
-      <div className="max-w-md mx-auto p-8 bg-white shadow-md rounded-lg mt-10">
-        <h2 className="text-2xl font-bold mb-6 text-center">Signup for Summit</h2>
+    <div className=' md:h-screen w-full flex justify-center items-center'>
+      
         {step === 'initial' ? (
           <InitialSignup 
             handleGoogleSignup={handleGoogleSignup} 
@@ -134,8 +146,13 @@ const Signup = () => {
             isGoogleSignUp={user?.providerData?.[0]?.providerId === 'google.com'}
           />
         )}
+        {/* <AdditionalInfoForm 
+            formData={formData} 
+            handleChange={handleChange} 
+            handleSubmit={handleSubmit}
+            isGoogleSignUp={user?.providerData?.[0]?.providerId === 'google.com'}
+          /> */}
       </div>
-    </div>
   );
 };
 

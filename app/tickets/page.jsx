@@ -121,7 +121,7 @@ const Page = () => {
                   level="Q" // Error correction level: L, M, Q, H
                   includeMargin={true}
                 />
-                <p className="font-mono text-sm">DEV SUMMIT'24</p>
+                <p className="font-mono text-sm">DEV SUMMIT&lsquo;24</p>
                 <div className="rounded-tl-full h-10 w-10 bg-white right-0 bottom-0 md:block absolute hidden "></div>
                 <div className="rounded-bl-full h-10 w-10 bg-white right-0 top-0 md:block absolute hidden"></div>
               </div>

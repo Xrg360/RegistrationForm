@@ -53,7 +53,7 @@ const Landing = () => {
             <li>Time: 9:00 AM to 5:00 PM</li>
             <li>Venue: Muthoot Institute of Technology and Science, Varikoli</li>
             <li>Food preferences will be accommodated</li>
-            <li>Don't forget to bring your ID and the QR code provided after registration</li>
+            <li>Don&lsquo;t forget to bring your ID and the QR code provided after registration</li>
           </ul>
         </section>
 

@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import Navbar from "./common/Navbar";
 import Landing from "./home/landing";
 

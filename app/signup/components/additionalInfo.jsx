@@ -10,7 +10,7 @@ const AdditionalInfoForm = ({
   isGoogleSignUp,
 }) => (
   <div className="w-screen md:h-screen   p-4 sm:p-10 flex flex-col lg:flex-row justify-center items-center">
-    <div className="w-full lg:w-1/3 h-full p-4 sm:p-10 flex flex-col justify-center border-r-2 border-primary/40 ">
+    <div className="w-full lg:w-1/3 h-full p-4 sm:p-10 flex flex-col justify-center md:border-r-2 border-primary/40 ">
     <div className="flex justify-center items-center">
       <Image src="/assets/logo.png" height={150} width={150} alt="Logo" className="mb-2" />
       <span className="pr-8">x</span>
@@ -34,7 +34,7 @@ const AdditionalInfoForm = ({
       <h2 className="text-2xl font-semibold text-yellow-500 mb-6 ">
         Event Registration Form
       </h2>
-      <form className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-4  transition-all duration-500 ease-out" onSubmit={handleSubmit}>
+      <form className="w-full max-w-3xl md:grid grid-cols-1 md:grid-cols-2 flex flex-col gap-4  " onSubmit={handleSubmit}>
        
           <>
             <div className="col-span-1">

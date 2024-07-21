@@ -30,9 +30,7 @@ const Landing = () => {
           </button>
         ) : (
           <div className='flex space-x-4'>
-            <button onClick={handleLogin} className="bg-blue-500 text-white py-2 px-4 rounded">
-              Login
-            </button>
+           
             <button onClick={handleSignup} className="bg-green-500 text-white py-2 px-4 rounded">
               Signup
             </button>

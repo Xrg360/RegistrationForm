@@ -47,10 +47,10 @@ const InitialSignup = ({
           />
         </div>
         <div className='flex justify-center p-2 '>
-            <button type="submit" class="relative px-6 py-3 font-bold text-black group">
-              <span class="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-primary group-hover:translate-x-0 group-hover:translate-y-0"></span>
-              <span class="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
-              <span class="relative">Sign up</span>
+            <button type="submit" className="relative px-6 py-3 font-bold text-black group">
+              <span className="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-primary group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span className="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
+              <span className="relative">Sign up</span>
             </button>
 
             </div>

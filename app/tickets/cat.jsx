@@ -14,7 +14,7 @@ const Cat = () => {
           </header>
 
           <p class="max-w-sm mb-5 leading-5 md:leading-7 ">
-            Don't worry, sometimes even we make mistakes.
+            Don&apos;t worry, sometimes even we make mistakes.
            Why dont you go back and try signing up again?
           </p>
 

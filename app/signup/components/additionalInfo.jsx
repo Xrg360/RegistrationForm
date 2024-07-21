@@ -74,11 +74,11 @@ const AdditionalInfoForm = ({
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full p-2 border  rounded mt-2"
-            pattern="[0-9]*"
+            className="w-full p-2 border rounded mt-2"
+            pattern="^\d{10}$"
+            title="Phone number must be exactly 10 digits."
             required
           />
-     
         </div>
        
         <div className="col-span-1">

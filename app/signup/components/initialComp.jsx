@@ -46,18 +46,20 @@ const InitialSignup = ({
             required
           />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          Sign up
-        </button>
+        <div className='flex justify-center p-2 '>
+            <button type="submit" class="relative px-6 py-3 font-bold text-black group">
+              <span class="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-devcolor group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span class="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
+              <span class="relative">Sign up</span>
+            </button>
+
+            </div>
       </form>
       <p className="py-2">
         Have an account?
         <button
           onClick={() => router.push("/login")}
-          className=" text-blue-600  rounded px-1"
+          className=" text-blue-600  rounded px-1  hover:underline transition-all duration-300"
         >
           Login
         </button>

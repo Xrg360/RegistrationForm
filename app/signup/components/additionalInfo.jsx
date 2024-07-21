@@ -177,14 +177,15 @@ const AdditionalInfoForm = ({
             required
           />
         </div>
-        <div className="col-span-1 md:col-span-2 mt-4">
-          <button
-            type="submit"
-            className="w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600"
-          >
-            Proceed to pay
-          </button>
-        </div>
+        
+        <div className='flex justify-center p-2 '>
+            <button type="submit" class="relative px-6 py-3 font-bold text-black group">
+              <span class="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-devcolor group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span class="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
+              <span class="relative">Proceed to Pay</span>
+            </button>
+
+            </div>
       </form>
     </div>
   </div>

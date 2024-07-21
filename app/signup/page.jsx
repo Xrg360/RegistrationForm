@@ -27,6 +27,7 @@ const Signup = () => {
     ieeeMember: '',
     ieeeID: '',
     paymentScreenshot: null,
+    status: 'pending',
   });
   const handleChange = (e) => {
     const { name, value, files } = e.target;

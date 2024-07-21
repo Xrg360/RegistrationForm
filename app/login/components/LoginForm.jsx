@@ -69,8 +69,11 @@ const LoginForm = () => {
         } else {
           console.log("No such document!");
         }
-
-        router.push("/tickets");
+        console.log(userCredential.user.email);
+        if(userCredential.user.email === "rohitbabugeorge@gmail.com")
+          router.push("/admin");
+        else
+          router.push("/tickets");
       } catch (error) {
         console.error("Authentication Error:", error.message);
         alert("Authentication failed. Please check your credentials.");
@@ -96,7 +99,11 @@ const LoginForm = () => {
       localStorage.setItem("userlName", nameParts[nameParts.length - 1]);
       
       login();
-      router.push("/tickets");
+      console.log(result.user.email);
+      if(result.user.email === "rohitbabugeorge@gmail.com")
+        router.push("/admin");
+      else
+        router.push("/tickets");
     } catch (error) {
       console.error("Google Authentication Error:", error.message);
       alert("Google authentication failed.");

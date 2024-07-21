@@ -9,7 +9,6 @@ import { useAuth } from '../providers/context';
 import { useRouter } from 'next/navigation'; // Adjust the import based on your router location
 import InitialSignup from './components/initialComp';
 import AdditionalInfoForm from './components/additionalInfo';
-import Image from 'next/image';
 
 const Signup = () => {
   const [formData, setFormData] = useState({

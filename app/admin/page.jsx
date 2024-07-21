@@ -20,7 +20,7 @@ const Admin = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user && user.email === "rohitbabugeorge@gmail.com") {
+      if (user && user.email === "rohitbabugeorge@gmail.com" || user &&  user.email === "bhavans71729@gmail.com") {
         const querySnapshot = await getDocs(collection(db, "users"));
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setParticipants(data);

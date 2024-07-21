@@ -21,7 +21,7 @@ const InitialSignup = ({
         className="md:w-3/5 bg-primary/80 text-black py-2 px-4 rounded mb-6 flex justify-center items-center hover:bg-primary/40"
       >
         <Image src='/assets/google.svg' height={20} width={20} className='py-1'></Image>
-        <p className="px-4 font-semibold">Sign up with Google</p>
+        <p className="px-4 font-semibold transition duration-300 ease-out    ">Sign up with Google</p>
       </button>
       <form className="md:w-3/5" onSubmit={handleEmailPasswordSignup}>
         <div className="mb-4">
@@ -48,7 +48,7 @@ const InitialSignup = ({
         </div>
         <div className='flex justify-center p-2 '>
             <button type="submit" class="relative px-6 py-3 font-bold text-black group">
-              <span class="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-devcolor group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span class="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-primary group-hover:translate-x-0 group-hover:translate-y-0"></span>
               <span class="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
               <span class="relative">Sign up</span>
             </button>

@@ -7,7 +7,7 @@ const AdditionalInfoForm = ({
   handleSubmit,
   isGoogleSignUp,
 }) => (
-  <div className="w-screen md:h-screen p-4 sm:p-10 flex flex-col lg:flex-row justify-center items-center">
+  <div className="w-screen md:h-screen   p-4 sm:p-10 flex flex-col lg:flex-row justify-center items-center">
     <div className="w-full lg:w-1/3 h-full p-4 sm:p-10 flex flex-col justify-center">
     <div className="flex justify-center items-center">
       <Image src="/assets/logo.png" height={150} width={150} alt="Logo" className="mb-2" />
@@ -31,7 +31,7 @@ const AdditionalInfoForm = ({
         Event Registration Form
       </h2>
       <form className="w-full max-w-3xl grid grid-cols-1 md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
-        {!isGoogleSignUp && (
+       
           <>
             <div className="col-span-1">
               <label className="block text-gray-700">
@@ -60,19 +60,21 @@ const AdditionalInfoForm = ({
               />
             </div>
           </>
-        )}
+       
         <div className="col-span-1">
           <label className="block text-gray-700">
             Phone No.<span className="text-red-600">*</span>
           </label>
           <input
-            type="text"
+            type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 rounded mt-2"
+            className="w-full p-2 border  rounded mt-2"
+            pattern="[0-9]*"
             required
           />
+     
         </div>
        
         <div className="col-span-1">
@@ -122,21 +124,21 @@ const AdditionalInfoForm = ({
             <input
               type="radio"
               name="foodPref"
-              value="yes"
+              value="veg"
               onChange={handleChange}
               className="mr-2"
               required
             />
-            <label className="mr-4">Yes</label>
+            <label className="mr-4">Veg</label>
             <input
               type="radio"
               name="foodPref"
-              value="no"
+              value="nonveg"
               onChange={handleChange}
               className="mr-2"
               required
             />
-            <label>No</label>
+            <label>Non-veg</label>
           </div>
         </div>
         <div className="col-span-1">
@@ -180,7 +182,7 @@ const AdditionalInfoForm = ({
         
         <div className='flex justify-center p-2 '>
             <button type="submit" class="relative px-6 py-3 font-bold text-black group">
-              <span class="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-devcolor group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span class="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-primary group-hover:translate-x-0 group-hover:translate-y-0"></span>
               <span class="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
               <span class="relative">Proceed to Pay</span>
             </button>

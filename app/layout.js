@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./common/Navbar";
 import { AuthProvider } from "./providers/context";
+import { TunnelToolbar } from "@tunnel/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,8 +17,13 @@ export default function RootLayout({ children }) {
       
       <body className={inter.className}>
         <AuthProvider>
-        <Navbar />
         {children}
+        {process.env.APP_ENV === "staging" && (
+          <TunnelToolbar
+            projectId="PROJECT_ID"
+            branch="BRANCH_NAME"
+          />
+        )}
         </AuthProvider>
       </body>
     </html>

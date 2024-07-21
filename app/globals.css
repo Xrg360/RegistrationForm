@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  /* background: linear-gradient(90deg, #ffffff 10%, #fff5de 90%); */
+@font-face {
+  font-family: 'Grifter';
+  src: url('/assets/fonts/grifterbold.otf') format('opentype');
 }

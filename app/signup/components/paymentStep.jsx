@@ -9,7 +9,7 @@ const PaymentStep = ({ formData, handleChange, handleSubmit }) => {
   const { ieeeMember, csMember,refmail } = formDataObject;
 
   let ticketAmount = "Rs. 699/-"; 
-  if(refmail === 'rohitbabugeorge@ieee.org')
+  if(refmail === 'theadmindiscount@ieee.org')
     ticketAmount = "Rs. 1/-"; 
   else if (ieeeMember === "yes" && csMember === "yes") {
     ticketAmount = "Rs. 499/-"; 

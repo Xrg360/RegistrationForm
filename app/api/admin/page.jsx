@@ -1,13 +1,14 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { useAuth } from "../providers/context"; // Ensure you have a context provider for authentication
-import { useRouter } from "next/navigation";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { collection, doc, getDocs, getFirestore, updateDoc } from "firebase/firestore";
-import app from "@/utils/firebaseConfig";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faTimes, faEdit } from "@fortawesome/free-solid-svg-icons";
-import * as XLSX from "xlsx";
+// pages/admin/index.js
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../../providers/context'; // Ensure you have a context provider for authentication
+import { useRouter } from 'next/navigation';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { collection, doc, getDocs, getFirestore, updateDoc } from 'firebase/firestore';
+import app from '@/utils/firebaseConfig';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
+import * as XLSX from 'xlsx';
+import withAuth from '@/utils/withAuth';
 
 const Admin = () => {
   const [participants, setParticipants] = useState([]);
@@ -20,13 +21,13 @@ const Admin = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user && user.email === "rohitbabugeorge@gmail.com") {
-        const querySnapshot = await getDocs(collection(db, "users"));
+      if (user && user.email === 'rohitbabugeorge@gmail.com') {
+        const querySnapshot = await getDocs(collection(db, 'users'));
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setParticipants(data);
         setIsLoading(false);
       } else {
-        router.push("/login");
+        router.push('/login');
       }
     });
 
@@ -34,7 +35,7 @@ const Admin = () => {
   }, [auth, db, router]);
 
   const handleStatusChange = async (id, status) => {
-    const userDocRef = doc(db, "users", id);
+    const userDocRef = doc(db, 'users', id);
     await updateDoc(userDocRef, { status });
     setParticipants((prev) =>
       prev.map((participant) => (participant.id === id ? { ...participant, status } : participant))
@@ -45,13 +46,13 @@ const Admin = () => {
     const exportData = participants.map(({ id, status, ...fields }) => fields);
     const worksheet = XLSX.utils.json_to_sheet(exportData);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
-    XLSX.writeFile(workbook, "Participants.xlsx");
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Participants');
+    XLSX.writeFile(workbook, 'Participants.xlsx');
   };
 
   const handleLogout = () => {
     logout();
-    router.push("/login");
+    router.push('/login');
   };
 
   const toggleExpand = (imageUrl) => {
@@ -97,11 +98,11 @@ const Admin = () => {
                       <td className="py-2 px-2 md:px-4">{participant.branch}</td>
                       <td className="py-2 px-2 md:px-4">{participant.sem}</td>
                       <td className="py-2 px-2 md:px-4">{participant.clg}</td>
-                      <td className="py-2 px-2 md:px-4">{participant.ieeeMember ? "Yes" : "No"}</td>
+                      <td className="py-2 px-2 md:px-4">{participant.ieeeMember ? 'Yes' : 'No'}</td>
                       <td className="py-2 px-2 md:px-4" onClick={() => toggleExpand(participant.paymentScreenshot)}>
                         <img
                           src={participant.paymentScreenshot}
-                          alt={"payment"}
+                          alt={'payment'}
                           className="w-12 h-12 md:w-16 md:h-16 object-cover cursor-pointer"
                         />
                       </td>
@@ -109,19 +110,19 @@ const Admin = () => {
                       <td className="py-2 px-2 md:px-4 flex justify-center">
                         <button
                           className="text-green-500 mx-1 md:mx-2"
-                          onClick={() => handleStatusChange(participant.id, "confirmed")}
+                          onClick={() => handleStatusChange(participant.id, 'confirmed')}
                         >
                           <FontAwesomeIcon icon={faCheck} />
                         </button>
                         <button
                           className="text-red-500 mx-1 md:mx-2"
-                          onClick={() => handleStatusChange(participant.id, "rejected")}
+                          onClick={() => handleStatusChange(participant.id, 'rejected')}
                         >
                           <FontAwesomeIcon icon={faTimes} />
                         </button>
                         <button
                           className="text-blue-500 mx-1 md:mx-2"
-                          onClick={() => handleStatusChange(participant.id, "pending")}
+                          onClick={() => handleStatusChange(participant.id, 'pending')}
                         >
                           <FontAwesomeIcon icon={faEdit} />
                         </button>
@@ -156,4 +157,5 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+const allowedEmails = ["rohitbabugeorge@gmail.com", "admin1@gmail.com", "admin2@gmail.com"];
+export default withAuth(Admin, allowedEmails);

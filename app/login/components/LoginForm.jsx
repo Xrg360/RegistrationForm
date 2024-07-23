@@ -91,16 +91,31 @@ const LoginForm = () => {
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
+      const user = result.user;
 
-      localStorage.setItem("userId", result.user.uid);
-      localStorage.setItem("userEmail", result.user.email);
-      const nameParts = result.user.displayName.split(" ");
+      // Check if the user exists in Firestore
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (!docSnap.exists()) {
+        // If user data does not exist, log out and redirect to signup
+        await auth.signOut();
+        alert("Please sign up before logging in with Google.");
+        logout();
+        router.push("/signup");
+        return null;
+      }
+
+      // If user data exists, proceed with login
+      localStorage.setItem("userId", user.uid);
+      localStorage.setItem("userEmail", user.email);
+      const nameParts = user.displayName.split(" ");
       localStorage.setItem("userfName", nameParts[0]);
       localStorage.setItem("userlName", nameParts[nameParts.length - 1]);
       
       login();
-      console.log(result.user.email);
-      if(result.user.email === "rohitbabugeorge@gmail.com")
+      console.log(user.email);
+      if(user.email === "rohitbabugeorge@gmail.com")
         router.push("/admin");
       else
         router.push("/tickets");

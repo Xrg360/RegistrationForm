@@ -9,6 +9,7 @@ import { useAuth } from '../providers/context';
 import { useRouter } from 'next/navigation'; // Adjust the import based on your router location
 import InitialSignup from './components/initialComp';
 import AdditionalInfoForm from './components/additionalInfo';
+import PaymentStep from './components/paymentStep'; // Import the new payment step component
 import Image from 'next/image';
 
 const Signup = () => {
@@ -43,7 +44,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/tickets'); // Redirect to landing page if already logged in
+      router.push('/tickets'); 
     }
   }, [isAuthenticated, router]);
 
@@ -99,7 +100,12 @@ const Signup = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleAdditionalInfoSubmit = (e) => {
+    e.preventDefault();
+    setStep('payment');
+  };
+
+  const handlePaymentSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -139,20 +145,20 @@ const Signup = () => {
             formData={formData}
             handleChange={handleChange}
           />
-        ) : (
+        ) : step === 'info' ? (
           <AdditionalInfoForm 
             formData={formData} 
             handleChange={handleChange} 
-            handleSubmit={handleSubmit}
+            handleSubmit={handleAdditionalInfoSubmit}
             isGoogleSignUp={user?.providerData?.[0]?.providerId === 'google.com'}
           />
-        )}
-        {/* <AdditionalInfoForm 
+        ) : (
+          <PaymentStep
             formData={formData} 
             handleChange={handleChange} 
-            handleSubmit={handleSubmit}
-            isGoogleSignUp={user?.providerData?.[0]?.providerId === 'google.com'}
-          /> */}
+            handleSubmit={handlePaymentSubmit}
+          />
+        )}
       </div>
   );
 };

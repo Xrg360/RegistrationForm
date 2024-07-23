@@ -21,7 +21,7 @@ const InitialSignup = ({
         className="md:w-3/5 bg-primary/80 text-black py-2 px-4 rounded mb-6 flex justify-center items-center hover:bg-primary/40"
       >
         <Image src='/assets/google.svg' height={20} width={20} className='py-1'></Image>
-        <p className="px-4 font-semibold">Sign up with Google</p>
+        <p className="px-4 font-semibold transition duration-300 ease-out    ">Sign up with Google</p>
       </button>
       <form className="md:w-3/5" onSubmit={handleEmailPasswordSignup}>
         <div className="mb-4">
@@ -46,18 +46,20 @@ const InitialSignup = ({
             required
           />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          Sign up
-        </button>
+        <div className='flex justify-center p-2 '>
+            <button type="submit" className="relative px-6 py-3 font-bold text-black group">
+              <span className="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-primary group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span className="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
+              <span className="relative">Sign up</span>
+            </button>
+
+            </div>
       </form>
       <p className="py-2">
         Have an account?
         <button
           onClick={() => router.push("/login")}
-          className=" text-blue-600  rounded px-1"
+          className=" text-blue-600  rounded px-1  hover:underline transition-all duration-300"
         >
           Login
         </button>

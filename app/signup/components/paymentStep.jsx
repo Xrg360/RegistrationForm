@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import QRCode from "qrcode.react";
+import Image from "next/image";
 import Link from "next/link";
 
 const PaymentStep = ({ formData, handleChange, handleSubmit }) => {
@@ -77,12 +77,13 @@ const PaymentStep = ({ formData, handleChange, handleSubmit }) => {
       </div>
       <div className="w-full flex flex-col justify-center items-center space-y-4">
         <div className="text-center w-full flex flex-col justify-center items-center">
-          <Link href={`upi://pay?pa=9605286714@okbizaxis&pn=Melvin%20Sabu&Payment&am=${localFormData.numericAmount}&cu=INR`}>
+          <Link href="upi://pay?pa=itsmelvinsabu@okaxis&pn=Melvin%20Sabu&aid=uGICAgICXh8r-CQ">
             <div className="flex justify-center w-full">
-              <QRCode value={`upi://pay?pa=9605286714@okbizaxis&pn=Melvin%20Sabu&Payment&am=${localFormData.numericAmount}&cu=INR`} />
+              {/* <QRCode value={`upi://pay?pa=9605286714@okbizaxis&pn=MELVIN%20SABU&mc=8220&aid=uGICAgMD566y-Tw&ver=01&mode=01&tr=BCR2DN4TYHAY5EDU`} /> */}
+              <Image src="/assets/paymentqr.jpg" height={180} width={180}/>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              Scan or tap the QR code to make the payment.
+              Scan the QR code to make the payment.
             </p>
           </Link>
         </div>

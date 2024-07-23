@@ -53,7 +53,7 @@ const Signup = () => {
   };
 
   const [user, setUser] = useState(null);
-  const [step, setStep] = useState('initial');
+  const [step, setStep] = useState('initial1');
   const { isAuthenticated, login } = useAuth();
   const router = useRouter();
 

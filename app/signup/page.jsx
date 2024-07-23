@@ -33,6 +33,7 @@ const Signup = () => {
     refmail:''
   });
   const handleChange = (e) => {
+
     const { name, value, files } = e.target;
     if (name === 'paymentScreenshot') {
       setFormData((prevData) => {

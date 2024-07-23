@@ -1,38 +1,37 @@
-// pages/admin/index.js
+"use client";
 import React, { useEffect, useState } from 'react';
-import { useAuth } from '../../providers/context'; // Ensure you have a context provider for authentication
-import { useRouter } from 'next/navigation';
+import { useAuth } from '../providers/context'; // Ensure you have a context provider for authentication
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { collection, doc, getDocs, getFirestore, updateDoc } from 'firebase/firestore';
 import app from '@/utils/firebaseConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes, faEdit } from '@fortawesome/free-solid-svg-icons';
 import * as XLSX from 'xlsx';
-import withAuth from '@/utils/withAuth';
 
 const Admin = () => {
   const [participants, setParticipants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null); // State for controlling the overlay image
-  const { logout, isAuthenticated } = useAuth();
-  const router = useRouter();
+  const { logout } = useAuth();
   const db = getFirestore(app);
   const auth = getAuth(app);
 
+  const allowedEmails = ["rohitbabugeorge@gmail.com", "bhavans71729@gmail.com"];
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user && user.email === 'rohitbabugeorge@gmail.com') {
+      if (user && allowedEmails.includes(user.email)) {
         const querySnapshot = await getDocs(collection(db, 'users'));
         const data = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setParticipants(data);
         setIsLoading(false);
       } else {
-        router.push('/login');
+        window.location.href = '/login';
       }
     });
 
     return () => unsubscribe();
-  }, [auth, db, router]);
+  }, [auth, db]);
 
   const handleStatusChange = async (id, status) => {
     const userDocRef = doc(db, 'users', id);
@@ -52,7 +51,7 @@ const Admin = () => {
 
   const handleLogout = () => {
     logout();
-    router.push('/login');
+    window.location.href = '/login';
   };
 
   const toggleExpand = (imageUrl) => {
@@ -157,5 +156,4 @@ const Admin = () => {
   );
 };
 
-const allowedEmails = ["rohitbabugeorge@gmail.com", "admin1@gmail.com", "admin2@gmail.com"];
-export default withAuth(Admin, allowedEmails);
+export default Admin;

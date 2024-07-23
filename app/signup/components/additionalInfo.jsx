@@ -212,6 +212,18 @@ const AdditionalInfoForm = ({
         </div>
             </>
         )}
+        <div className="col-span-1">
+          <label className="block text-gray-700">
+            Referring mail
+          </label>
+          <input
+            type="text"
+            name="refmail"
+            value={formData.refmail}
+            onChange={handleChange}
+            className="w-full p-2 border border-gray-300 rounded mt-2"
+          />
+        </div>
         <div className='flex justify-center p-2 col-span-2'>
             <button type="submit" className="relative px-6 py-3 font-bold text-black group">
               <span className="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-primary group-hover:translate-x-0 group-hover:translate-y-0"></span>

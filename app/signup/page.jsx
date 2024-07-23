@@ -30,18 +30,29 @@ const Signup = () => {
     ieeeID: '',
     paymentScreenshot: null,
     status: 'pending',
+    refmail:''
   });
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'paymentScreenshot') {
-      setFormData((prevData) => ({ ...prevData, [name]: files[0] }));
+      setFormData((prevData) => {
+        const updatedData = { ...prevData, [name]: files[0] };
+        const dataToStore = { ...updatedData, paymentScreenshot: files[0] ? files[0].name : '' };
+        localStorage.setItem('formData', JSON.stringify(dataToStore));
+        return updatedData;
+      });
     } else {
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
+      setFormData((prevData) => {
+        const updatedData = { ...prevData, [name]: value };
+        // Save updated form data to localStorage
+        localStorage.setItem('formData', JSON.stringify(updatedData));
+        return updatedData;
+      });
     }
   };
 
   const [user, setUser] = useState(null);
-  const [step, setStep] = useState('initial');
+  const [step, setStep] = useState('info');
   const { isAuthenticated, login } = useAuth();
   const router = useRouter();
 

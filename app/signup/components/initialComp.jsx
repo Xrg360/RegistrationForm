@@ -13,7 +13,7 @@ const InitialSignup = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="max-w-md mx-auto px-6 py-2 pb-10 bg-white flex justify-center items-center flex-col shadow-md md:w-1/2 rounded-lg mt-10">
+    <div className="max-w-md mx-auto px-6 py-2 pb-10 bg-white flex justify-center items-center flex-col  md:w-1/2 rounded-lg mt-10">
         <Image src={'/assets/logo.png'} height={100} width={100} className='py-2'></Image>
         <h2 className="text-2xl font-bold mb-6 text-center font-grifter">Signup for Summit</h2>
       <button

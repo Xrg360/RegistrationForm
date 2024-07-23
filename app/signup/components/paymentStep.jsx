@@ -50,7 +50,7 @@ const PaymentStep = ({ formData, handleChange, handleSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col items-center p-4 space-y-4 bg-white shadow-md rounded-lg"
+      className="flex flex-col items-center p-4 space-y-4 bg-white rounded-lg"
     >
       <div className="text-center">
         <h2 className="text-xl font-semibold text-gray-700">Payment Details</h2>
@@ -89,10 +89,10 @@ const PaymentStep = ({ formData, handleChange, handleSubmit }) => {
         <div className="text-center">
           <p className="text-sm text-gray-500">Or use the following details:</p>
           <p className="text-sm text-gray-700 font-semibold">
-            Name : Melvin Sabu  z
+            Name : Melvin Sabu 
           </p>
           <p className="text-sm text-gray-700 font-semibold">
-            UPI ID: 9605286714@okbizaxis
+            UPI ID: itsmelvinsabu@okaxis
           </p>
           <p className="text-sm text-gray-700 font-semibold">
             Account Number: 5556053000062638
@@ -102,13 +102,11 @@ const PaymentStep = ({ formData, handleChange, handleSubmit }) => {
           </p>
         </div>
       </div>
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-        disabled={!isScreenshotUploaded}
-      >
-        Submit
-      </button>
+      <button type="submit" disabled={!isScreenshotUploaded} className="relative px-6 py-3 font-bold text-black group">
+              <span className="absolute inset-0 rounded-xl w-full h-full transition duration-300 ease-out transform -translate-x-2 -translate-y-2 bg-primary group-hover:translate-x-0 group-hover:translate-y-0"></span>
+              <span className="absolute inset-0 w-full h-full rounded-xl border-2 border-black"></span>
+              <span className="relative">1 2 3 ....Goo</span>
+            </button>
     </form>
   );
 };

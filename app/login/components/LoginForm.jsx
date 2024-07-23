@@ -127,7 +127,7 @@ const LoginForm = () => {
 
   return (
     <div className="h-[80vh] md:h-screen w-full flex justify-center items-center">
-      <div className="max-w-md mx-auto px-6 py-2 pb-10 bg-white flex justify-center items-center flex-col md:shadow-md md:w-1/2 rounded-lg mt-10">
+      <div className="max-w-md mx-auto px-6 py-2 pb-10 bg-white flex justify-center items-center flex-col  md:w-1/2 rounded-lg mt-10">
         <Image
           src={"/assets/logo.png"}
           height={100}

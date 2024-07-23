@@ -11,9 +11,7 @@ const AdditionalInfoForm = ({
 }) => (
   <div className="w-screen md:h-screen   p-4 sm:p-10 flex flex-col lg:flex-row justify-center items-center">
     <div className="w-full lg:w-1/3 h-full p-4 sm:p-10 flex flex-col justify-center md:border-r-2 border-primary/40 ">
-    <div className="flex justify-center items-center">
-      <Image src="/assets/logo.png" height={150} width={150} alt="Logo" className="mb-2" />
-      <span className="pr-8">x</span>
+    <div className="flex justify-start items-start">
       <Image src="/assets/summitlogo.png" height={100} width={100} alt="Logo" className="mb-2" />
       </div>
       <h1 className="text-4xl font-bold mb-2  font-grifter">DevSummit 2024</h1>
